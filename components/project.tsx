@@ -1,18 +1,17 @@
 "use client";
 
 import { useRef } from "react";
-import { projectsData } from "@/lib/data";
+import { ProjectData } from "@/lib/data";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
-
-type ProjectProps = (typeof projectsData)[number];
 
 export default function Project({
   title,
   description,
   tags,
   imageUrl,
-}: ProjectProps) {
+  links,
+}: ProjectData) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -36,6 +35,26 @@ export default function Project({
           <p className="mt-2 leading-relaxed text-gray-700 dark:text-white/70">
             {description}
           </p>
+
+          {links && links.length > 0 && (
+            <div className="flex flex-wrap gap-2 mt-3">
+              {links.map((link, index) => {
+                const isExternal = link.url.startsWith("http");
+                return (
+                  <a
+                    key={index}
+                    href={link.url}
+                    target={isExternal ? "_blank" : undefined}
+                    rel={isExternal ? "noopener noreferrer" : undefined}
+                    className="px-4 py-1.5 text-sm font-medium rounded-full bg-blue-50 text-blue-700 border border-blue-200 hover:bg-blue-100 transition dark:bg-blue-900/30 dark:text-blue-300 dark:border-blue-800 dark:hover:bg-blue-900/50"
+                  >
+                    {link.label}
+                  </a>
+                );
+              })}
+            </div>
+          )}
+
           <ul className="flex flex-wrap mt-4 gap-2 sm:mt-auto">
             {tags.map((tag, index) => (
               <li
@@ -53,7 +72,7 @@ export default function Project({
           alt="Project I worked on"
           quality={95}
           className="absolute hidden sm:block top-8 -right-40 w-[28.25rem] rounded-t-lg shadow-2xl
-        transition 
+        transition
         group-hover:scale-[1.04]
         group-hover:-translate-x-3
         group-hover:translate-y-3

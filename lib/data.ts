@@ -5,6 +5,9 @@ import { LuGraduationCap } from "react-icons/lu";
 import corpcommentImg from "@/public/corpcomment.png";
 import rmtdevImg from "@/public/rmtdev.png";
 import wordanalyticsImg from "@/public/wordanalytics.png";
+import studioCuveeglowImg from "@/public/studio-cuveeglow.png";
+import { ProjectLink } from "./types";
+import { StaticImageData } from "next/image";
 
 export const links = [
   {
@@ -20,10 +23,6 @@ export const links = [
     hash: "#projects",
   },
   {
-    name: "Skills",
-    hash: "#skills",
-  },
-  {
     name: "Experience",
     hash: "#experience",
   },
@@ -32,6 +31,14 @@ export const links = [
     hash: "#contact",
   },
 ] as const;
+
+export type ProjectData = {
+  title: string;
+  description: string;
+  tags: string[];
+  imageUrl: StaticImageData;
+  links?: ProjectLink[];
+};
 
 export const experiencesData = [
   {
@@ -60,7 +67,18 @@ export const experiencesData = [
   },
 ] as const;
 
-export const projectsData = [
+export const projectsData: ProjectData[] = [
+  {
+    title: "Studio Cuvee Glow",
+    description:
+      "A full-stack creative studio platform built with Next.js and TypeScript. Features a modern design system, dynamic project showcases, and an integrated CMS.",
+    tags: ["React", "Next.js", "TypeScript", "Tailwind", "Framer Motion"],
+    imageUrl: studioCuveeglowImg,
+    links: [
+      { label: "Live Site", url: "https://cuveeglow.com" },
+      { label: "Case Study", url: "/projects/studio-cuveeglow" },
+    ],
+  },
   {
     title: "CorpComment",
     description:
@@ -82,7 +100,7 @@ export const projectsData = [
     tags: ["React", "Next.js", "SQL", "Tailwind", "Framer"],
     imageUrl: wordanalyticsImg,
   },
-] as const;
+];
 
 export const skillsData = [
   "HTML",

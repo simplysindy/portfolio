@@ -3,17 +3,21 @@ import Contact from "@/components/contact";
 import Experience from "@/components/experience";
 import Intro from "@/components/intro";
 import Projects from "@/components/projects";
-import SectionDivider from "@/components/section-divider";
-import Skills from "@/components/skills";
+import { headers } from "next/headers";
 
 export default function Home() {
+  const headersList = headers();
+  const host = headersList.get("host") || "";
+
+  if (host.includes("cuveeglow.com")) {
+    return <main>:)</main>;
+  }
+
   return (
     <main className="flex flex-col items-center px-4">
       <Intro />
-      <SectionDivider />
       <About />
       <Projects />
-      <Skills />
       <Experience />
       <Contact />
     </main>

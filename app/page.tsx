@@ -10,7 +10,7 @@ export default function Home() {
   const host = headersList.get("host") || "";
 
   if (host.includes("cuveeglow.com")) {
-    return <main>:)</main>;
+    return <main>  :)</main>;
   }
 
   return (

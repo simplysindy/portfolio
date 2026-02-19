@@ -11,8 +11,8 @@ import { headers } from "next/headers";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Ricardo | Full-Stack Developer",
-  description: "Ricardo is a full-stack developer specializing in React, Next.js, and modern web technologies.",
+  title: "cuveeglow.com",
+  description: "Rage-quitting",
 };
 
 export default function RootLayout({
